@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvjlbncv6uoh8"]
+
+[ext_resource type="Script" path="res://logic/main.gd" id="1_hjw07"]
+[ext_resource type="PackedScene" uid="uid://blongx2yfiqwy" path="res://scenes/Table.tscn" id="2_0vxge"]
+[ext_resource type="PackedScene" uid="uid://bnml4egcp2dsf" path="res://scenes/HUD.tscn" id="3_m6cyh"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_hjw07")
+
+[node name="Table" parent="." instance=ExtResource("2_0vxge")]
+position = Vector2(523, 80)
+
+[node name="HUD" parent="." instance=ExtResource("3_m6cyh")]
+
+[node name="UpdateTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="hold_block" from="Table" to="HUD" method="_on_hold_block_changed"]
+[connection signal="new_block" from="Table" to="HUD" method="_on_next_block_changed"]
+[connection signal="timeout" from="UpdateTimer" to="Table" method="_on_update_timer"]

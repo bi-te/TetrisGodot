@@ -1,0 +1,71 @@
+[gd_scene load_steps=5 format=3 uid="uid://bnml4egcp2dsf"]
+
+[ext_resource type="Script" path="res://logic/HUD.gd" id="1_4k7p2"]
+[ext_resource type="TileSet" uid="uid://cpoli8duwkd6t" path="res://assets/tetris_block_tiles.tres" id="2_a57wg"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_hmmay"]
+font_size = 64
+font_color = Color(0.678431, 1, 0.705882, 0.984314)
+outline_size = 27
+outline_color = Color(0.121569, 0.109804, 0.109804, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wp6u3"]
+bg_color = Color(0.564706, 0.980392, 0.54902, 1)
+draw_center = false
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.476563, 0.488281, 0.511719, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_4k7p2")
+
+[node name="GameOverLabel" type="Label" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -0.5
+offset_top = -11.5
+offset_right = 0.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "Game Over 
+Press R to Restart"
+label_settings = SubResource("LabelSettings_hmmay")
+horizontal_alignment = 1
+
+[node name="Next" type="Panel" parent="."]
+texture_filter = 1
+offset_left = 883.0
+offset_top = 80.0
+offset_right = 1043.0
+offset_bottom = 240.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_wp6u3")
+
+[node name="TileMap" type="TileMap" parent="Next"]
+tile_set = ExtResource("2_a57wg")
+format = 2
+metadata/_edit_group_ = true
+
+[node name="Hold" type="Panel" parent="."]
+texture_filter = 1
+offset_left = 323.0
+offset_top = 80.0
+offset_right = 483.0
+offset_bottom = 240.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_wp6u3")
+
+[node name="TileMap" type="TileMap" parent="Hold"]
+tile_set = ExtResource("2_a57wg")
+format = 2
+metadata/_edit_group_ = true

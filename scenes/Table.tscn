@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://blongx2yfiqwy"]
+
+[ext_resource type="Script" path="res://logic/Table.gd" id="1_arh4f"]
+[ext_resource type="TileSet" uid="uid://cpoli8duwkd6t" path="res://assets/tetris_block_tiles.tres" id="1_bb0v4"]
+[ext_resource type="Texture2D" uid="uid://bmeax0kmg4y6d" path="res://assets/table_background.png" id="1_t8kxq"]
+
+[node name="Table" type="TileMap"]
+tile_set = ExtResource("1_bb0v4")
+format = 2
+script = ExtResource("1_arh4f")
+metadata/_edit_lock_ = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+show_behind_parent = true
+texture_filter = 1
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 322.0
+offset_bottom = 642.0
+texture = ExtResource("1_t8kxq")
