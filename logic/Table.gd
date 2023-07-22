@@ -13,13 +13,17 @@ var blocks_indices: Array[int] = [0, 1, 2, 3, 4, 5, 6];
 var block_queue: Array[int];
 var table: Array[TBlock.TYPE];
 var current_block: TBlock;
-var held_block: TBlock.TYPE;
+var held_block := TBlock.TYPE.BNUM;
 var input_state: InputState;
 var on_hold: bool = false;
+
+var game_state: GameState;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	randomize();
+	game_state = get_node("/root/TGameState");
+	
 	input_state = InputState.new();
 	table.resize(table_rows * table_columns);
 	table.fill(TBlock.TYPE.BNUM);
@@ -87,7 +91,7 @@ func put_on_start(type: TBlock.TYPE) -> void:
 		current_block.position.x = 4 - current_block.block.size.x / 2;
 
 func spawn_block() -> void:
-	if block_queue.is_empty():
+	if block_queue.size() <= 2:
 		generate_next_blocks();
 	
 	put_on_start(block_queue.pop_front());
@@ -137,7 +141,7 @@ func check_finish() -> void:
 		current_block.position.y -= 1;
 		on_hold = false;
 		add_to_table();
-		check_full_rows();
+		game_state.score_update(check_full_rows());
 		spawn_block();
 
 func add_to_table() -> void:
@@ -177,7 +181,7 @@ func check_full_rows() -> int:
 		if full_rows:
 			for col in range(table_columns):
 				table[(row + full_rows) * table_columns + col] = table[row * table_columns + col];
-		
+	
 	return full_rows;
 
 func reset() -> void:
@@ -203,7 +207,7 @@ func hold_current_block() -> void:
 		put_on_start(held_block);
 		held_block = temp;
 	else:
-		held_block = current_block.block.type;
+		held_block = current_block .block.type;
 		spawn_block();
 	hold_block.emit(temp);
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bnml4egcp2dsf"]
+[gd_scene load_steps=8 format=3 uid="uid://bnml4egcp2dsf"]
 
 [ext_resource type="Script" path="res://logic/HUD.gd" id="1_4k7p2"]
 [ext_resource type="TileSet" uid="uid://cpoli8duwkd6t" path="res://assets/tetris_block_tiles.tres" id="2_a57wg"]
@@ -21,6 +21,15 @@ corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
+
+[sub_resource type="LabelSettings" id="LabelSettings_lq6ku"]
+font_size = 28
+
+[sub_resource type="LabelSettings" id="LabelSettings_btbvy"]
+font_size = 28
+
+[sub_resource type="LabelSettings" id="LabelSettings_5lst0"]
+font_size = 28
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_4k7p2")
@@ -69,3 +78,36 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_wp6u3")
 tile_set = ExtResource("2_a57wg")
 format = 2
 metadata/_edit_group_ = true
+
+[node name="Score" type="Label" parent="."]
+offset_left = 883.0
+offset_top = 293.0
+offset_right = 972.0
+offset_bottom = 335.0
+text = "Score: "
+label_settings = SubResource("LabelSettings_lq6ku")
+
+[node name="ScoreNum" type="Label" parent="Score"]
+layout_mode = 0
+offset_left = 89.0
+offset_right = 129.0
+offset_bottom = 23.0
+text = "0
+"
+label_settings = SubResource("LabelSettings_btbvy")
+
+[node name="Level" type="Label" parent="."]
+offset_left = 883.0
+offset_top = 369.0
+offset_right = 972.0
+offset_bottom = 411.0
+text = "Level: "
+label_settings = SubResource("LabelSettings_lq6ku")
+
+[node name="LevelNum" type="Label" parent="Level"]
+layout_mode = 0
+offset_left = 89.0
+offset_right = 129.0
+offset_bottom = 42.0
+text = "0"
+label_settings = SubResource("LabelSettings_5lst0")

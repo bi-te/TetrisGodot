@@ -13,7 +13,7 @@ position = Vector2(523, 80)
 [node name="HUD" parent="." instance=ExtResource("3_m6cyh")]
 
 [node name="UpdateTimer" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.6
 
 [connection signal="hold_block" from="Table" to="HUD" method="_on_hold_block_changed"]
 [connection signal="new_block" from="Table" to="HUD" method="_on_next_block_changed"]

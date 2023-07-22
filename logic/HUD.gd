@@ -2,10 +2,20 @@ class_name HUD extends CanvasLayer
 
 var next_tilemap: TileMap;
 var hold_tilemap: TileMap;
+var score_label: Label;
+var level_label: Label;
 
 func _ready() -> void:
 	next_tilemap = $Next/TileMap;
 	hold_tilemap = $Hold/TileMap;
+	score_label = $Score/ScoreNum;
+	level_label = $Level/LevelNum;
+
+func _on_score_update(score: int) -> void:
+	score_label.text = var_to_str(score);
+
+func _on_level_update(level: int) -> void:
+	level_label.text = var_to_str(level);
 
 func _on_next_block_changed(type: TBlock.TYPE) -> void:
 	var block_to_show: TBlock.BlockData = TBlock.all_blocks[type];
